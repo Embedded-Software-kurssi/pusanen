@@ -1,0 +1,6 @@
+
+
+
+void BlinkIfPrime(int number);
+
+
