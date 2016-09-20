@@ -1,0 +1,11 @@
+*.d
+*.o
+*.hex
+*.lss
+*.map
+*.srec
+*.eep
+*.elf
+*.xml
+*.atsuo
+*.atsln
