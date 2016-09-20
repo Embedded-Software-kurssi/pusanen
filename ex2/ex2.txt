@@ -1,0 +1,23 @@
+3.
+a. Debugger is a tool with can be used to run program and testi it step by step and check the variables.
+b. We need debugger to find problems in our programs.
+c. We can specify the fault area from the program.
+d. There isnt allways serial and it is kind of slow to type it all.
+e. Breakpoint is a point that you can put  any line in program. Or multiple breapoints.
+f. The main difference is that with when we are testing programs we try prove that there is no erros and when we are
+debugging program then we are trying to find whats wrong in the program.
+g. It is realworld debugger for debugging software do run hardware.
+h. jtag is 4-wire test acces port to testing circuit boards, aWire uses the reset wire from the board and allows to programming
+and debugging it propeply,  swd  is a subset of the jtag interface.
+i. We can see the faults in memory level from the program.
+
+
+5.
+a. It is translating writed code to machinecode.
+b. Linker is linkig created files together.
+c. Preprocessor is a # that can compiled before a prime program and it isnt taking memory.
+d. Symbolic machine language
+e. Fields that are declared volatile are not subject to compiler optimizations. Some times it wont work propebly
+if the code is optimized.
+f. It becomes to be a machine language. BOOM!
+g. Compile is translating code to machine language and the compile is included to build.
