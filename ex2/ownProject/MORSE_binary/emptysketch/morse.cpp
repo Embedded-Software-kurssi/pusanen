@@ -2,7 +2,7 @@
  * morse.cpp
  *
  * Created: 20.9.2016 12.29.11
- *  Author: pusan
+ *  Author: Teemu Pusa, Jarmo Pesonen 
  */ 
  #include <Arduino.h>
  #include "morse.h"
