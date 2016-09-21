@@ -2,7 +2,7 @@
  * morse.h
  *
  * Created: 20.9.2016 12.28.57
- *  Author: pusan
+ *  Author: Teemu Pusa, Jarmo Pesonen
  */ 
 
 
