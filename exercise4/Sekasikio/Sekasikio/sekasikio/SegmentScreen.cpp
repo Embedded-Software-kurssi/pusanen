@@ -27,6 +27,7 @@
 	 //230, // 9
  //};
 
+
  unsigned char numbers[10] = {
 	 254, // 0
 	 176, // 1
@@ -59,6 +60,11 @@
  }
 
  SegmentScreen::SegmentScreen(char *cathodePins, char anodePin) {
+	for (int i = 0; i < 8; i++) {
+		pinMode(cathodePins[i], OUTPUT);
+		digitalWrite(cathodePins[i], HIGH);
+	}
+	digitalWrite(anodePin, HIGH);
 	this->cathodePins = cathodePins;
 	this->AdnodePin = anodePin;
  }

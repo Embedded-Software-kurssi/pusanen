@@ -2,7 +2,7 @@
  * SegmentScreen.h
  *
  * Created: 13.10.2016 12.51.48
- *  Author: pusan
+ *  Author: Teemu Pusa Jarmo Pesonen
  */ 
 
 

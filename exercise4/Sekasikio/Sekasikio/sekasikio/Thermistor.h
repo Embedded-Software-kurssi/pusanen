@@ -2,7 +2,7 @@
  * Thermistor.h
  *
  * Created: 25.10.2016 12.04.49
- *  Author: pusan
+ *  Author: Teemu Pusa Jarmo Pesonen
  */ 
 
 
@@ -20,7 +20,7 @@ class Thermistor
 
 	int getValue();
 	float getCelciusF();
-	int getCelciusC();
+	int getCelciusI();
 };
 
 #endif /* THERMISTOR_H_ */

@@ -114,7 +114,7 @@
 	 return convertValueToCelcius(val);
  }
 
-int Thermistor::getCelciusC() {
+int Thermistor::getCelciusI() {
 int val = analogRead(thermistorPin);
 	return convertValueToCelcius(val);
  }

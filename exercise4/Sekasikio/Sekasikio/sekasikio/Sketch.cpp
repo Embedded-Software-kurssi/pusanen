@@ -1,6 +1,7 @@
 ﻿#include <Arduino.h>
 #include "SegmentScreen.h"
 #include "Thermistor.h"
+#include "Morse.h"
 
 char cathodePins[8] = {
 	4, 5, 6, 7, 8, 9, 10
@@ -15,31 +16,16 @@ SegmentLayout layout(screens, 2);
 
 Thermistor thermistor(A0);
 
-void setup() {
-	pinMode(2, OUTPUT);
-	pinMode(3, OUTPUT);
-	pinMode(4, OUTPUT);
-	pinMode(5, OUTPUT);
-	pinMode(6, OUTPUT);
-	pinMode(7, OUTPUT);
-	pinMode(8, OUTPUT);
-	pinMode(9, OUTPUT);
-	pinMode(10, OUTPUT);
+Morse morse(11);
 
-	digitalWrite(2, HIGH);
-	digitalWrite(3, HIGH);
-
-	digitalWrite(4, HIGH);
-	digitalWrite(5, HIGH);
-	digitalWrite(6, HIGH);
-	digitalWrite(7, HIGH);
-	digitalWrite(8, HIGH);
-	digitalWrite(9, HIGH);
-	digitalWrite(10, HIGH);	
+void setup() {	
+	morse.setText("I LOVE EMBENDED");
 }
 
 void loop() {
-	String str = String(thermistor.getCelciusC());
-	layout.setText(str);
+// Prints temperature two digit(two 7 segment screen)
+	layout.setText(String(thermistor.getCelciusI()));
+	// This switchs screen with delay specifid in library.
  	layout.refresh();
+	morse.refresh();
 }
