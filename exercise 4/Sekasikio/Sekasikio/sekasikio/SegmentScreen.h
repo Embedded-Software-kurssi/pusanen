@@ -11,41 +11,29 @@
 
 #include "Arduino.h"
 
-class IHardware
-{
-	private:
-
-	public:
-	virtual void showSegment(char o) = 0;
-	virtual void delay(int d) = 0;
-};
-
 class SegmentScreen
 {
 	private:
 	char *cathodePins;
-	int AdnodePin = 0;
-
-	IHardware *hardware;
+	int anodePin = 0;
 	
 	void bitAction(char b, char pin);
 
 	public:
-	SegmentScreen(char *cathodePins, char anodePin);
+	SegmentScreen(char cathodePins[7], char anodePin);
 	~SegmentScreen();
 
 	void clear();
 	void show(char c);
 	void turnOn();
 	void turnOff();
+	void init();
 };
 
 class SegmentLayout
 {
 	private:
 	SegmentScreen **segmentScreens;
-
-	IHardware *hardware;
 
 	String text;
 
@@ -54,7 +42,7 @@ class SegmentLayout
 	int slideDelay;
 	int currentSlideIndex = 0;
 
-	char minRefreshDelay = 10;
+	char minRefreshDelay = 2;
 	long lastRefresh = 0;
 
 	public:
@@ -63,8 +51,7 @@ class SegmentLayout
 
 	void setText(String text);
 	void refresh();
+	void init();
 };
-
-
 
 #endif /* SEGMENTSCREEN_H_ */

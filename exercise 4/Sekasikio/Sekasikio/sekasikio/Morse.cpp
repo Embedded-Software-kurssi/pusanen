@@ -53,30 +53,11 @@ Morse::~Morse() {
 
 }
 
-void Morse::bitAction(char b) {
-   if (b > 0) {
-     digitalWrite(ledPin, HIGH);
-     delay(500);
-     digitalWrite(ledPin, LOW);
-     delay(400);
-     } else {
-     digitalWrite(ledPin, HIGH);
-     delay(200);
-     digitalWrite(ledPin, LOW);
-     delay(400);
-   }
-}
-
 void Morse::next() {
     digitalWrite(ledPin, LOW);
     ledOn = 0;
     bitIndex++;
-    //Serial.println(bitIndex);
     if (bitIndex >= maxBits) {
-      Serial.println("Kirjaimen vaihto");
-      //Serial.println(maxBits);
-      //Serial.print("Nykyinen kirjan on ");
-      //Serial.println(text[charIndex]);
       charIndex++;
       maxBits = 0;
       if (text.length() <= charIndex) {
@@ -97,13 +78,11 @@ void Morse::refresh() {
     char c = characters[text[charIndex]-65];
     if (c & BITS[bitIndex+4-maxBits]) {
       if (currentTime - ledOnDuration > dashDelay) {
-        Serial.println("Pitkä");
         next();
         ledOffDuration = currentTime;
       }
     } else {
       if (currentTime - ledOnDuration > dotDelay) {
-        Serial.println("Lyhyt");
         next();
         ledOffDuration = currentTime;
       }
@@ -115,12 +94,8 @@ void Morse::refresh() {
       }      
     } else {
     if (currentTime - ledOffDuration > blinkDelay) {
-      /*Serial.print("character ");
-      Serial.println(text[charIndex], DEC);
-      Serial.println(text[charIndex]-65, DEC);*/
       if (maxBits == 0) {
         char c = characters[text[charIndex]-65];
-        //Serial.println(text[charIndex]-65, DEC);
         if (c & BIT5) {
           maxBits = 4;
         }
@@ -133,14 +108,8 @@ void Morse::refresh() {
         else if (c & BIT2) {
           maxBits = 1;
         }
-        //Serial.println(maxBits);
-        //Serial.println("");
       }
-      //Serial.println(bitIndex);
       ledOnDuration = currentTime;
-     // Serial.print("Nykyinen kirjan on ");
-     // Serial.println(text[charIndex]);
-
       digitalWrite(ledPin, HIGH); 
       ledOn = 1;       
     }

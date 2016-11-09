@@ -28,7 +28,6 @@ class Morse {
 	String text;
 
 	void next();
-	void bitAction(char b);
 	public:
 	Morse(char ledPin);
 	~Morse();
