@@ -38,9 +38,7 @@ SUBDIRS :=
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../Morse.cpp \
-../SegmentScreen.cpp \
-../Sketch.cpp \
-../Thermistor.cpp
+../Sketch.cpp
 
 
 PREPROCESSING_SRCS += 
@@ -51,46 +49,35 @@ ASM_SRCS +=
 
 OBJS +=  \
 Morse.o \
-SegmentScreen.o \
-Sketch.o \
-Thermistor.o
+Sketch.o
 
 OBJS_AS_ARGS +=  \
 Morse.o \
-SegmentScreen.o \
-Sketch.o \
-Thermistor.o
+Sketch.o
 
 C_DEPS +=  \
 Morse.d \
-SegmentScreen.d \
-Sketch.d \
-Thermistor.d
+Sketch.d
 
 C_DEPS_AS_ARGS +=  \
 Morse.d \
-SegmentScreen.d \
-Sketch.d \
-Thermistor.d
+Sketch.d
 
-OUTPUT_FILE_PATH +=projectReverseTime.elf
+OUTPUT_FILE_PATH +=c.elf
 
-OUTPUT_FILE_PATH_AS_ARGS +=projectReverseTime.elf
+OUTPUT_FILE_PATH_AS_ARGS +=c.elf
 
 ADDITIONAL_DEPENDENCIES:=
 
 OUTPUT_FILE_DEP:= ./makedep.mk
 
-LIB_DEP+= 
+LIB_DEP+=  \
+C:/Users/Ilmeister/Desktop/pusapesonen/exercise\ 5/C/C/ArduinoCore/Debug/libArduinoCore.a
 
 LINKER_SCRIPT_DEP+= 
 
 
 # AVR32/GNU C Compiler
-
-
-
-
 
 
 
@@ -128,13 +115,13 @@ all: $(OUTPUT_FILE_PATH) $(ADDITIONAL_DEPENDENCIES)
 $(OUTPUT_FILE_PATH): $(OBJS) $(USER_OBJS) $(OUTPUT_FILE_DEP) $(LIB_DEP) $(LINKER_SCRIPT_DEP)
 	@echo Building target: $@
 	@echo Invoking: AVR8/GNU Linker : 4.9.2
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -o$(OUTPUT_FILE_PATH_AS_ARGS) $(OBJS_AS_ARGS) $(USER_OBJS) $(LIBS) -Wl,-Map="projectReverseTime.map" -Wl,--start-group -Wl,-lm  -Wl,--end-group -Wl,--gc-sections -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.106\gcc\dev\atmega328p" -Os  
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -o$(OUTPUT_FILE_PATH_AS_ARGS) $(OBJS_AS_ARGS) $(USER_OBJS) $(LIBS) -Wl,-Map="c.map" -Wl,--start-group -Wl,-lm -Wl,-lArduinoCore  -Wl,--end-group -Wl,-L"C:\Users\Ilmeister\Desktop\pusapesonen\exercise 5\C\C\ArduinoCore\Debug"  -Wl,--gc-sections -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.106\gcc\dev\atmega328p" -Os  
 	@echo Finished building target: $@
-	"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -O ihex -R .eeprom -R .fuse -R .lock -R .signature -R .user_signatures  "projectReverseTime.elf" "projectReverseTime.hex"
-	"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -j .eeprom  --set-section-flags=.eeprom=alloc,load --change-section-lma .eeprom=0  --no-change-warnings -O ihex "projectReverseTime.elf" "projectReverseTime.eep" || exit 0
-	"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objdump.exe" -h -S "projectReverseTime.elf" > "projectReverseTime.lss"
-	"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -O srec -R .eeprom -R .fuse -R .lock -R .signature -R .user_signatures "projectReverseTime.elf" "projectReverseTime.srec"
-	"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-size.exe" "projectReverseTime.elf"
+	"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -O ihex -R .eeprom -R .fuse -R .lock -R .signature -R .user_signatures  "c.elf" "c.hex"
+	"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -j .eeprom  --set-section-flags=.eeprom=alloc,load --change-section-lma .eeprom=0  --no-change-warnings -O ihex "c.elf" "c.eep" || exit 0
+	"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objdump.exe" -h -S "c.elf" > "c.lss"
+	"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-objcopy.exe" -O srec -R .eeprom -R .fuse -R .lock -R .signature -R .user_signatures "c.elf" "c.srec"
+	"C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-size.exe" "c.elf"
 	
 	
 
@@ -146,5 +133,5 @@ $(OUTPUT_FILE_PATH): $(OBJS) $(USER_OBJS) $(OUTPUT_FILE_DEP) $(LIB_DEP) $(LINKER
 clean:
 	-$(RM) $(OBJS_AS_ARGS) $(EXECUTABLES)  
 	-$(RM) $(C_DEPS_AS_ARGS)   
-	rm -rf "projectReverseTime.elf" "projectReverseTime.a" "projectReverseTime.hex" "projectReverseTime.lss" "projectReverseTime.eep" "projectReverseTime.map" "projectReverseTime.srec" "projectReverseTime.usersignatures"
+	rm -rf "c.elf" "c.a" "c.hex" "c.lss" "c.eep" "c.map" "c.srec" "c.usersignatures"
 	
