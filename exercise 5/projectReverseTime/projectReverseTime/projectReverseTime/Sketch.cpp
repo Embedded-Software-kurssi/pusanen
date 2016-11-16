@@ -47,6 +47,9 @@ void setup() {
 }
 
 void loop() {
+	button1State = digitalRead(buttonPin1);
+	button2State = digitalRead(buttonPin2);
+	button3State = digitalRead(buttonPin3);
 	if (button1State) {
 		hours++;
 		if (hours > 59) hours = 0;
