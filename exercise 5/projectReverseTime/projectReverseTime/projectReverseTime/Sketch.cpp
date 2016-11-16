@@ -52,7 +52,7 @@ void loop() {
 	button3State = digitalRead(buttonPin3);
 	if (button1State) {
 		hours++;
-		if (hours > 59) hours = 0;
+		if (hours > 23) hours = 0;
 		button1State = 0;
 	}
 	if (button2State) {
